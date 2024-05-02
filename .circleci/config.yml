@@ -39,7 +39,8 @@ jobs:
       - image: cimg/base:stable
     steps:
       # Replace this with steps to deploy to users
-      - run: npm run netlify:deploy
+      - run:
+          command: npm run netlify:deploy
 workflows:
   build-and-test:
     jobs:
