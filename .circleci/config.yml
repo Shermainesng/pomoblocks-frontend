@@ -37,7 +37,6 @@ jobs:
     docker:
       - image: cimg/node:18.16.0
     steps:
-      # Replace this with steps to deploy to users
       - checkout
       - node/install-packages:
           pkg-manager: npm
@@ -47,9 +46,15 @@ workflows:
   build-and-test:
     jobs:
       - test-node
+
+  deploy-to-production:
+    jobs:
       - build-node:
-          requires:
-            - test-node
+          filters:
+            branches:
+              only: [master]
       - deploy:
           requires:
             - build-node
+          environment:
+            name: production
