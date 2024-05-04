@@ -52,7 +52,7 @@ workflows:
       - build-node:
           filters:
             branches:
-              only: [master]
+              only: [main]
       - deploy:
           requires:
             - build-node
