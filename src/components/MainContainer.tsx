@@ -4,7 +4,7 @@ export interface IMainContainerProps {} // Optional interface for props (if need
 
 export default function Wrapper({children}: any) {
   return (
-    <div className="wrapper vh[100] vw[100] bg-lightPink">
+    <div className="wrapper h-dvh bg-lightPink">
       {children}
     </div>
   );

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import TaskList from './Tasks/TaskList';
+import TimerScreen from './Timer/TimerScreen';
 
 export interface ITabsProps {
 }
@@ -15,6 +16,7 @@ export default function Tabs (props: ITabsProps) {
             <button role="tab"  className={`tab text-white ${selectedTab === 1 ? "bg-custom" : "bg-darkPurple"}`}  onClick={()=>setSelectedTab(1)}>PLANNER</button>
             <button role="tab"className={`tab text-white ${selectedTab === 2? "bg-custom" : "bg-darkPurple"}`}  onClick={()=>setSelectedTab(2)}>RESULT</button>
         </div>
+        {selectedTab === 0 && <TimerScreen/>}
         {selectedTab === 1 &&  <TaskList/> }
     </div>
   );

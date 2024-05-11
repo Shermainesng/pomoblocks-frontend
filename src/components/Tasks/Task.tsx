@@ -5,7 +5,7 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 
 type TaskProps = {
     task: TaskType
-    addBlockToTask: (taskId: number, taskDuration: number)=>void
+    addBlockToTask: (taskId: string, taskDuration: number)=>void
 }
 
 export default function Task ({task, addBlockToTask}: TaskProps) {
