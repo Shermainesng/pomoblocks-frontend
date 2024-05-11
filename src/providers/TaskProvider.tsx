@@ -21,7 +21,7 @@ export const TaskContext = createContext<TaskContextType>(defaultValue)
 
 const TaskProvider = ({children}: {children: React.ReactNode}) => {
     const [tasks, setTasks] = useState<Task[]>(defaultValue.tasks)
-    const [currentTask, setCurrentTask] = useState<Task| null>(null)
+    const [currentTask] = useState<Task| null>(null)
 
     const addTask = (title: string, description: string) => {
         // console.log("adding to tasks")

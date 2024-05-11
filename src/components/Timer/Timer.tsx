@@ -4,8 +4,8 @@ export interface ITimerProps {
 }
 
 export default function Timer () {
-    const [minutes, setMinutes] = useState(50)
-    const [seconds, setSeconds] = useState(0)
+    // const [minutes, setMinutes] = useState(50)
+    // const [seconds, setSeconds] = useState(0)
     const [timerRunning, setTimerRunning] = useState<boolean>(false)
 
     // const startTimer = () => {

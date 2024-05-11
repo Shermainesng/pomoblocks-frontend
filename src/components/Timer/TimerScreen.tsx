@@ -7,7 +7,7 @@ export interface ITimerScreenProps {
 
 export default function TimerScreen (props: ITimerScreenProps) {
     const {currentTask} = useTaskContext()
-    const [canAddTime, setCanAddTime] = useState<boolean>(false)
+    const [canAddTime] = useState<boolean>(false)
    
    
     
