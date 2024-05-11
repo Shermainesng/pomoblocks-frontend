@@ -44,7 +44,7 @@ export default function TaskList (props: ITaskListProps) {
             <h1>Tasks to Complete</h1>
             <p>--------------</p>
         </div>
-        <div className='flex flex-col w-full md:w-1/2 lg:w-1/3'>
+        <div data-testid="tasklist-1" className='flex flex-col w-full md:w-1/2 lg:w-1/3'>
             {tasks.length>0 && tasks.map((task) => (
                 <Task key={task.id} task={task} addBlockToTask={addBlockToTask}/>
             ))}
@@ -68,7 +68,7 @@ export default function TaskList (props: ITaskListProps) {
             }
         </div>
         <div className='flex flex-col justify-center items-center'>
-            <button onClick={()=>setShowNewTaskForm((prev)=>!prev)} className='text-8xl text-white hover:text-darkPurple'><IoAddCircleSharp /></button>
+            <button data-testid="add-task-btn" onClick={()=>setShowNewTaskForm((prev)=>!prev)} className='text-8xl text-white hover:text-darkPurple'><IoAddCircleSharp /></button>
             <p className='text-darkPurple'>Add Task</p>
         </div>
 
