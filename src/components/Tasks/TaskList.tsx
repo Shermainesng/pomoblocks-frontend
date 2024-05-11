@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import { useTaskContext } from '../../providers/TaskProvider';
-import MainContainer from '../MainContainer';
 import Task from './Task';
 import { IoAddCircleSharp } from "react-icons/io5";
 import { RxCross1 } from "react-icons/rx";
