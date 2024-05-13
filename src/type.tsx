@@ -2,13 +2,19 @@ export type Task = {
     id: string, 
     title: string, 
     description: string, 
-    blocks?: Block[] 
+    blocks: Block[] 
 }
 
 export type Block = {
     id: string, 
     duration: number, 
     completed: boolean
+}
+
+export type User = {
+    username: string, 
+    email: string, 
+    password: string
 }
 export var fakeTasks: Task[] = [
     {
@@ -29,7 +35,8 @@ export var fakeTasks: Task[] = [
     {
         id: "3",
         title: 'Coding', 
-        description: 'Be in the flow of focused coding to create projects'
+        description: 'Be in the flow of focused coding to create projects',
+        blocks:[ {id: "3", duration: 50, completed: false},]
     }, 
 ]
 
