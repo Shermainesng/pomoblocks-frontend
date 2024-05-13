@@ -1,6 +1,4 @@
-import React from 'react';
 import './App.css';
-import TaskProvider from './context/TaskContext';
 import Tabs from './components/Tabs';
 import Wrapper from './components/MainContainer';
 import {Routes, Route, Navigate} from 'react-router-dom'

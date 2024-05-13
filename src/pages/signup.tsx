@@ -1,4 +1,4 @@
-import React, {useEffect, useReducer, useState} from 'react';
+import React, { useReducer} from 'react';
 import { Link } from 'react-router-dom';
 import useSignup from '../hooks/useSignup';
 import { ToastContainer } from 'react-toastify';
@@ -50,7 +50,6 @@ const formStateReducer = (state: FormState, action:FormAction) => {
 
 export default function Signup () {
     const [formState, dispatch] = useReducer(formStateReducer, initialState);
-    const [isSubmitting, setIsSubmitting] = useState(false);
     // const [hasErrors, setHasErrors] = useState(false)
     
     const {loading, signup} = useSignup()
