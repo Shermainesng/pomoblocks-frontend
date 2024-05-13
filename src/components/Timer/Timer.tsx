@@ -1,15 +1,14 @@
-import React, {useState, useEffect} from 'react';
-import { Task } from '../../type';
-import { start } from 'repl';
+import {useState, useEffect} from 'react';
 
 export default function Timer ({pomoType}: {pomoType:number}) {
     const [minutes, setMinutes] = useState<number>(pomoType === 25 ? 25:50)
     const [seconds, setSeconds] = useState<number>(0)
     const [timerRunning, setTimerRunning] = useState<boolean>(false)
 
-    
     useEffect(()=> {
+        console.log("hit useeffect")
         if (timerRunning) {
+            console.log("timer running")
              const interval = setInterval(() => {
                 if (seconds === 0) {
                     if (minutes !== 0) {

@@ -8,12 +8,13 @@ export interface ITimerScreenProps {
 export default function TimerScreen (props: ITimerScreenProps) {
     const {currentTask} = useTaskContext()
     const [canAddTime] = useState<boolean>(false)
-    const [blockNum, setBlockNum] = useState<number>(0)
+    const [blockNum] = useState<number>(0)
 
 
     let blockPeriod =0
     useEffect(() => {
         if(currentTask) {
+            // eslint-disable-next-line react-hooks/exhaustive-deps
             blockPeriod = currentTask.blocks[blockNum].duration
         }
     }, [currentTask])

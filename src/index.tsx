@@ -6,7 +6,6 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import TaskProvider from './context/TaskContext';
 import AuthProvider from './context/AuthContext';
-import Task from './components/Tasks/Task';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
