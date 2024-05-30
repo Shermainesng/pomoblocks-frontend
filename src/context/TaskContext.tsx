@@ -1,6 +1,8 @@
-import {createContext, useContext, useState} from "react"
+import {createContext, useContext, useState, useEffect} from "react"
 import { Task, fakeTasks } from "../type"
 import {v4 as uuidv4} from 'uuid';
+import { useHttp } from "../hooks/useHttp";
+
 
 type TaskContextType = {
     tasks: Task[]
@@ -20,24 +22,45 @@ export const TaskContext = createContext<TaskContextType>(defaultValue)
 
 
 const TaskProvider = ({children}: {children: React.ReactNode}) => {
-    const [tasks, setTasks] = useState<Task[]>(defaultValue.tasks)
-    const [currentTask] = useState<Task| null>(tasks[0])
+    const {fetchData} = useHttp()
+    const [tasks, setTasks] = useState<Task[]>([])
 
-    const addTask = (title: string, description: string) => {
-        // console.log("adding to tasks")
+    const [currentTask] = useState<Task| null>(fakeTasks[0])
 
+    useEffect(() => {
+        const getTasks = async() => {
+            try {
+                const response = await fetchData("http://localhost:8080/tasks")
+                // const data = response.json()
+                console.log("tasks fetched", response)
+                setTasks(tasks)
+            }catch(err) {
+                console.log(err)
+            }
+        }
+        getTasks()
+    }, [])
+
+    const addTask = async (title: string, description: string) => {
             if (title === '') {
                 throw new Error('Title cannot be empty!')
             }
-            const newTask = {
-                id: uuidv4(),
-                title, 
-                description, 
-                blocks: []
+            //send task details to backend 
+            try {
+                const newTask = {
+                    id: uuidv4(),
+                    title, 
+                    description, 
+                    blocks: []
+                }
+                const response = await fetchData('http://localhost:8080/tasks', 'POST', newTask)
+                const updatedTasks = [...tasks, newTask]
+                console.log("updated task after adding", response)
+                setTasks(updatedTasks)
+            }catch (err) {  
+                console.log(err)
             }
-            const updatedTasks = [...tasks, newTask]
-            console.log("updated task after adding", updatedTasks)
-            setTasks(updatedTasks)
+            
             // setError(null)
     }
 

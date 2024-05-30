@@ -6,9 +6,7 @@ export default function Timer ({pomoType}: {pomoType:number}) {
     const [timerRunning, setTimerRunning] = useState<boolean>(false)
 
     useEffect(()=> {
-        console.log("hit useeffect")
         if (timerRunning) {
-            console.log("timer running")
              const interval = setInterval(() => {
                 if (seconds === 0) {
                     if (minutes !== 0) {
@@ -22,7 +20,7 @@ export default function Timer ({pomoType}: {pomoType:number}) {
                     setSeconds(seconds - 1);
                 }
             }, 1000);
-            return () => {console.log('cleaning'); clearInterval(interval);}
+            return () => {clearInterval(interval);}
         }
         
     }, [timerRunning, minutes, seconds])

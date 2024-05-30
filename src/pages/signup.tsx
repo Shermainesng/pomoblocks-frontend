@@ -45,9 +45,6 @@ const formStateReducer = (state: FormState, action:FormAction) => {
     }
 }
 
-
-
-
 export default function Signup () {
     const [formState, dispatch] = useReducer(formStateReducer, initialState);
     // const [hasErrors, setHasErrors] = useState(false)
