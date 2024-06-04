@@ -3,8 +3,6 @@
 import React, {useEffect, useState} from 'react';
 import { Block, Task as TaskType} from '../../type';
 import { IoMdAddCircleOutline } from "react-icons/io";
-import twentyfive from '../../../public/images/clock-25.png'
-import fifty from '../../../public/images/clock-50.png'
 import Image from 'next/image'
 
 type TaskProps = {
@@ -44,13 +42,13 @@ export default function Task ({task, addBlockToTask}: TaskProps) {
           <div key={block.id}>
               {block.duration===25? 
                  <Image
-                src={twentyfive}
+                src="/images/clock-25.png"
                  width={50}
                  height={50}
                  alt="25 minutes session"
                />:
                <Image
-                 src={fifty}
+                 src="/images/clock-50.png"
                  width={50}
                  height={50}
                  alt="50 minutes session"

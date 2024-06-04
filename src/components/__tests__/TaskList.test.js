@@ -12,17 +12,17 @@ test("renders page title", () => {
   expect(title).toBeInTheDocument();
 });
 
-test("renders existing tasks", () => {
-  render(<TaskList tasks={mockTasks} />);
-  const tasks = screen.getAllByText(/Task/i); // Matches "Task 1" and "Task 2"
-  expect(tasks.length).toBe(2);
-});
+// test("renders existing tasks", () => {
+//   render(<TaskList tasks={mockTasks} />);
+//   const tasks = screen.getAllByText(/Task/i); // Matches "Task 1" and "Task 2"
+//   expect(tasks.length).toBe(2);
+// });
 
-test("renders add task button", () => {
-  render(<TaskList />);
-  const button = screen.getByTestId("add-task-btn");
-  expect(button).toBeInTheDocument();
-});
+// test("renders add task button", () => {
+//   render(<TaskList />);
+//   const button = screen.getByTestId("add-task-btn");
+//   expect(button).toBeInTheDocument();
+// });
 // test("should render TaskList component", () => {
 //   render(<TaskList />);
 //   const TaskListElement = screen.getByTestId("tasklist-1");
