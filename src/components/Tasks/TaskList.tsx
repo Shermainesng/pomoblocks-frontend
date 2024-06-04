@@ -11,7 +11,7 @@ export interface ITaskListProps {
 
 export default function TaskList (props: ITaskListProps) {
     const {tasks,addTask, addBlockToTask} = useTaskContext()
-    const [modalOpen, setModalOpen] = useState<boolean>(false)
+    // const [modalOpen, setModalOpen] = useState<boolean>(false)
     const [newTaskTitle, setNewTaskTitle] = useState<string>("")
     const [newTaskDescription, setNewTaskDescription] = useState<string>("")
    
