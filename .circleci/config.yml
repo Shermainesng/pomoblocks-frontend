@@ -23,15 +23,8 @@ jobs:
           pkg-manager: npm
       - run:
           command: npm run build
-      - run:
-          name: Create the ~/artifacts directory if it doesn't exist
-          command: mkdir -p ~/artifacts
-      # Copy output to artifacts dir
-      - run:
-          name: Copy artifacts
-          command: cp -R build dist public .output .next .docusaurus ~/artifacts 2>/dev/null || true
       - store_artifacts:
-          path: ~/artifacts
+          path: ./dist
           destination: node-build
   deploy:
     docker:
