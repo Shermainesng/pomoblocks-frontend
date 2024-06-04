@@ -35,7 +35,7 @@ jobs:
           destination: node-build
   deploy:
     docker:
-      - image: cimg/node:18.16.0
+      - image: cimg/node:18.18.0
     steps:
       - checkout
       - node/install-packages:
