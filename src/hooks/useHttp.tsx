@@ -19,7 +19,7 @@ export const useHttp = () => {
             console.log("getting data")
             const response = await fetch(url, {
                 // headers, 
-                body,
+                // body,
                 method,
                 signal: abortControllerRef.current.signal
             })

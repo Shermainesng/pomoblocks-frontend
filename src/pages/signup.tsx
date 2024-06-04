@@ -1,6 +1,7 @@
+"use client"
 import React, { useReducer} from 'react';
 import { Link } from 'react-router-dom';
-import useSignup from '../hooks/useSignup';
+// import useSignup from '../hooks/useSignup';
 import { ToastContainer } from 'react-toastify';
 type FormState = {
     username: { value: string; error: string, touched:boolean };
@@ -47,9 +48,8 @@ const formStateReducer = (state: FormState, action:FormAction) => {
 
 export default function Signup () {
     const [formState, dispatch] = useReducer(formStateReducer, initialState);
-    // const [hasErrors, setHasErrors] = useState(false)
     
-    const {loading, signup} = useSignup()
+    // const {loading, signup} = useSignup()
 
  
     
@@ -82,7 +82,7 @@ export default function Signup () {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        signup(formState.username.value, formState.email.value, formState.password.value )
+        // signup(formState.username.value, formState.email.value, formState.password.value )
     }
   return (
     <div className='flex flex-row justify-center'>
@@ -147,9 +147,9 @@ export default function Signup () {
             </Link>
 
             <div>
-                <button className='btn bg-darkPurple text-white border-none hover:bg-lightYellow' disabled={loading }>
+                {/* <button className='btn bg-darkPurple text-white border-none hover:bg-lightYellow' disabled={loading }>
                     {loading ? <span className='loading loading-spinner'>Signing up..</span>:"Sign Up"}
-                </button>
+                </button> */}
             </div>
         </form>
     </div>

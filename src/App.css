@@ -40,3 +40,11 @@
 .bg-custom {
   background-color:#F08181;
 }
+
+#new-task-modal::backdrop {
+  background-color: rgba(0, 0, 0, 0.374); /* Adjust opacity for desired darkness */
+  backdrop-filter: blur(2px); /* Optional: Add blur effect */
+}
+.custom-hidden {
+  display:none;
+}

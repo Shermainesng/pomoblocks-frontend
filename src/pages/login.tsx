@@ -1,16 +1,17 @@
+"use client"
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import useLogin from "../hooks/useLogin";
+// import useLogin from "../hooks/useLogin";
 import { ToastContainer } from "react-toastify";
 
 const Login = () => {
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
-    const {login, loading} = useLogin()
+    // const {login, loading} = useLogin()
     
     const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        await login(email, password)
+        // await login(email, password)
     }
 	return (
 		<div className='flex flex-col items-center justify-center min-w-96 mx-auto'>
@@ -49,9 +50,9 @@ const Login = () => {
 					</Link>
 
 					<div>
-						<button className='btn btn-block btn-sm mt-2' disabled={loading}>
+						{/* <button className='btn btn-block btn-sm mt-2' disabled={loading}>
                             {loading ? <span className='loading loading-spinner '></span>: "Login"}
-                        </button>
+                        </button> */}
 					</div>
 				</form>
 			</div>

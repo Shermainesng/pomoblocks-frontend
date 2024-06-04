@@ -27,19 +27,19 @@ const TaskProvider = ({children}: {children: React.ReactNode}) => {
 
     const [currentTask] = useState<Task| null>(fakeTasks[0])
 
-    useEffect(() => {
-        const getTasks = async() => {
-            try {
-                const response = await fetchData("http://localhost:8080/tasks")
-                // const data = response.json()
-                console.log("tasks fetched", response)
-                setTasks(tasks)
-            }catch(err) {
-                console.log(err)
-            }
-        }
-        getTasks()
-    }, [])
+    // useEffect(() => {
+    //     const getTasks = async() => {
+    //         try {
+    //             const response = await fetchData("http://localhost:8080/tasks")
+    //             // const data = response.json()
+    //             console.log("tasks fetched", response)
+    //             setTasks(tasks)
+    //         }catch(err) {
+    //             console.log(err)
+    //         }
+    //     }
+    //     getTasks()
+    // }, [])
 
     const addTask = async (title: string, description: string) => {
             if (title === '') {
