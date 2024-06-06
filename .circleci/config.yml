@@ -30,9 +30,6 @@ jobs:
   production_deployment:
     docker:
       - image: cimg/node:18.18.0
-    environment:
-      VERCEL_ORG_ID: team_36QZGQyVJsYk9WzBCPwx3KqG
-      VERCEL_PROJECT_ID: prj_0jynDiRr9gGCbVl3osi8A6yBcY1I
     steps:
       - checkout
       - run:
@@ -40,13 +37,13 @@ jobs:
           command: npm install --global vercel@latest
       - run:
           name: Pull Vercel Environment Information
-          command: vercel pull --yes --environment=production --token=f0nVWMSCcA8HL3KIXkOf9d9R
+          command: vercel pull --yes --environment=production --token=$VERCEL_TOKEN
       - run:
           name: Build Project Artifacts
-          command: vercel build --prod --token=f0nVWMSCcA8HL3KIXkOf9d9R
+          command: vercel build --prod --token=$VERCEL_TOKEN
       - run:
           name: Deploy Project Artifacts to Vercel
-          command: vercel deploy --prebuilt --prod --token=f0nVWMSCcA8HL3KIXkOf9d9R
+          command: vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
 
 workflows:
   version: 2
