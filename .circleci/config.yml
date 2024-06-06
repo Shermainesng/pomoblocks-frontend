@@ -8,8 +8,8 @@ jobs:
     docker:
       - image: cimg/node:18.18.0
     environment:
-      VERCEL_ORG_ID: team_36QZGQyVJsYk9WzBCPwx3KqG
-      VERCEL_PROJECT_ID: prj_0jynDiRr9gGCbVl3osi8A6yBcY1I
+      VERCEL_ORG_ID: ${VERCEL_ORG_ID}
+      VERCEL_PROJECT_ID: ${VERCEL_PROJECT_ID}
     steps:
       - checkout
       - run:
@@ -18,22 +18,21 @@ jobs:
       - run:
           name: Verify Environment Variables
           command: |
-            echo "VERCEL_TOKEN: $VERCEL_TOKEN"
-            echo "VERCEL_PROJECT_ID: $VERCEL_PROJECT_ID"
-            echo "VERCEL_ORG_ID: $VERCEL_ORG_ID"
+            echo "VERCEL_TOKEN: ${VERCEL_ORG_ID}"
+            echo "VERCEL_PROJECT_ID: ${VERCEL_PROJECT_ID}"
       - run:
           name: Pull Vercel Environment Information
-          command: vercel pull --yes --environment=preview --token=f0nVWMSCcA8HL3KIXkOf9d9R
+          command: vercel pull --yes --environment=preview --token=${{ env.VERCEL_TOKEN }}
       - run:
           name: Build Project Artifacts
-          command: vercel build --token=f0nVWMSCcA8HL3KIXkOf9d9R
+          command: vercel build --token=${{ env.VERCEL_TOKEN }}
       - run:
           name: Deploy Project Artifacts to Vercel
-          command: vercel deploy --prebuilt --token=f0nVWMSCcA8HL3KIXkOf9d9R
+          command: vercel deploy --prebuilt --token=${{ env.VERCEL_TOKEN }}
 
   production_deployment:
     docker:
-      - image: circleci/node:latest
+      - image: cimg/node:18.18.0
     environment:
       VERCEL_ORG_ID: team_36QZGQyVJsYk9WzBCPwx3KqG
       VERCEL_PROJECT_ID: prj_0jynDiRr9gGCbVl3osi8A6yBcY1I
