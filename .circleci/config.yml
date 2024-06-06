@@ -4,48 +4,57 @@ version: 2.1
 orbs:
   node: circleci/node@5.2.0
 jobs:
-  test-node:
-    # Install node dependencies and run tests
-    executor: node/default
-    steps:
-      - checkout
-      - node/install-packages:
-          pkg-manager: npm
-      - run:
-          name: Run tests
-          command: npm test --passWithNoTests
-  build-node:
-    # Build node project
-    executor: node/default
-    steps:
-      - checkout
-      - node/install-packages:
-          pkg-manager: npm
-      - run:
-          command: npm run build
-      - store_artifacts:
-          path: ./dist
-          destination: node-build
-  deploy:
+  preview_deployment:
     docker:
-      - image: cimg/node:18.18.0
+      - image: circleci/node:latest
+    environment:
+      VERCEL_ORG_ID: team_36QZGQyVJsYk9WzBCPwx3KqG
+      VERCEL_PROJECT_ID: prj_0jynDiRr9gGCbVl3osi8A6yBcY1I
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: npm
       - run:
-          command: npm run netlify:deploy
-workflows:
-  build-and-test:
-    jobs:
-      - test-node
+          name: Install Vercel CLI
+          command: npm install --global vercel@latest
+      - run:
+          name: Pull Vercel Environment Information
+          command: vercel pull --yes --environment=preview --token=f0nVWMSCcA8HL3KIXkOf9d9R
+      - run:
+          name: Build Project Artifacts
+          command: vercel build --token=f0nVWMSCcA8HL3KIXkOf9d9R
+      - run:
+          name: Deploy Project Artifacts to Vercel
+          command: vercel deploy --prebuilt --token=f0nVWMSCcA8HL3KIXkOf9d9R
 
-  deploy-to-production:
+  production_deployment:
+    docker:
+      - image: circleci/node:latest
+    environment:
+      VERCEL_ORG_ID: prj_0jynDiRr9gGCbVl3osi8A6yBcY1I
+      VERCEL_PROJECT_ID: team_36QZGQyVJsYk9WzBCPwx3KqG
+    steps:
+      - checkout
+      - run:
+          name: Install Vercel CLI
+          command: npm install --global vercel@latest
+      - run:
+          name: Pull Vercel Environment Information
+          command: vercel pull --yes --environment=production --token=f0nVWMSCcA8HL3KIXkOf9d9R
+      - run:
+          name: Build Project Artifacts
+          command: vercel build --prod --token=f0nVWMSCcA8HL3KIXkOf9d9R
+      - run:
+          name: Deploy Project Artifacts to Vercel
+          command: vercel deploy --prebuilt --prod --token=f0nVWMSCcA8HL3KIXkOf9d9R
+
+workflows:
+  version: 2
+  preview_and_production:
     jobs:
-      - build-node:
+      - preview_deployment:
           filters:
             branches:
-              only: [main]
-      - deploy:
-          requires:
-            - build-node
+              ignore: /main/
+      - production_deployment:
+          filters:
+            branches:
+              only: /main/

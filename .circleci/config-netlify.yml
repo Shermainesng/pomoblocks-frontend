@@ -1,0 +1,51 @@
+# This config was automatically generated from your source code
+# Stacks detected: deps:node:.
+version: 2.1
+orbs:
+  node: circleci/node@5.2.0
+jobs:
+  test-node:
+    # Install node dependencies and run tests
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: npm
+      - run:
+          name: Run tests
+          command: npm test --passWithNoTests
+  build-node:
+    # Build node project
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: npm
+      - run:
+          command: npm run build
+      - store_artifacts:
+          path: ./dist
+          destination: node-build
+  deploy:
+    docker:
+      - image: cimg/node:18.18.0
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: npm
+      - run:
+          command: npm run netlify:deploy
+workflows:
+  build-and-test:
+    jobs:
+      - test-node
+
+  deploy-to-production:
+    jobs:
+      - build-node:
+          filters:
+            branches:
+              only: [main]
+      - deploy:
+          requires:
+            - build-node

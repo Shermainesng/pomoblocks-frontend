@@ -7,8 +7,6 @@ export interface ITabsProps {
 
 export default function Task (props: ITabsProps) {
   return (
-    <div className='bg-teal-700'> 
       <TaskList/>
-     </div>
   );
 }
