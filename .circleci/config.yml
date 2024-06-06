@@ -7,7 +7,6 @@ jobs:
   preview_deployment:
     docker:
       - image: cimg/node:18.18.0
-    context: secret-vercel
     environment:
       VERCEL_ORG_ID: $VERCEL_ORG_ID
       VERCEL_PROJECT_ID: $VERCEL_PROJECT_ID
@@ -60,6 +59,7 @@ workflows:
           filters:
             branches:
               ignore: /main/
+          context: secret-vercel
       - production_deployment:
           filters:
             branches:
