@@ -6,10 +6,10 @@ orbs:
 jobs:
   preview_deployment:
     docker:
-      - image: circleci/node:latest
+      - image: cimg/node:18.18.0
     environment:
-      VERCEL_ORG_ID: team_36QZGQyVJsYk9WzBCPwx3KqG
-      VERCEL_PROJECT_ID: prj_0jynDiRr9gGCbVl3osi8A6yBcY1I
+      VERCEL_ORG_ID: $VERCEL_ORG_ID
+      VERCEL_PROJECT_ID: $VERCEL_PROJECT_ID
     steps:
       - checkout
       - run:
@@ -17,20 +17,20 @@ jobs:
           command: sudo npm install --global vercel@latest
       - run:
           name: Pull Vercel Environment Information
-          command: vercel pull --yes --environment=preview --token=f0nVWMSCcA8HL3KIXkOf9d9R
+          command: vercel pull --yes --environment=preview --token=$VERCEL_TOKEN
       - run:
           name: Build Project Artifacts
-          command: vercel build --token=f0nVWMSCcA8HL3KIXkOf9d9R
+          command: vercel build --token=$VERCEL_TOKEN
       - run:
           name: Deploy Project Artifacts to Vercel
-          command: vercel deploy --prebuilt --token=f0nVWMSCcA8HL3KIXkOf9d9R
+          command: vercel deploy --prebuilt --token=$VERCEL_TOKEN
 
   production_deployment:
     docker:
       - image: circleci/node:latest
     environment:
-      VERCEL_ORG_ID: prj_0jynDiRr9gGCbVl3osi8A6yBcY1I
-      VERCEL_PROJECT_ID: team_36QZGQyVJsYk9WzBCPwx3KqG
+      VERCEL_ORG_ID: $VERCEL_ORG_ID
+      VERCEL_PROJECT_ID: $VERCEL_PROJECT_ID
     steps:
       - checkout
       - run:
@@ -38,13 +38,13 @@ jobs:
           command: npm install --global vercel@latest
       - run:
           name: Pull Vercel Environment Information
-          command: vercel pull --yes --environment=production --token=f0nVWMSCcA8HL3KIXkOf9d9R
+          command: vercel pull --yes --environment=production --token=$VERCEL_TOKEN
       - run:
           name: Build Project Artifacts
-          command: vercel build --prod --token=f0nVWMSCcA8HL3KIXkOf9d9R
+          command: vercel build --prod --token=$VERCEL_TOKEN
       - run:
           name: Deploy Project Artifacts to Vercel
-          command: vercel deploy --prebuilt --prod --token=f0nVWMSCcA8HL3KIXkOf9d9R
+          command: vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
 
 workflows:
   version: 2
