@@ -1,3 +1,4 @@
+"use client"
 import {useState, useEffect} from 'react';
 import { useTaskContext } from '../../context/TaskContext';
 import { IoAddCircleSharp } from "react-icons/io5";
