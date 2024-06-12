@@ -1,3 +1,5 @@
+"use client"
+
 import React, {useState} from 'react';
 import { useTaskContext } from '../../context/TaskContext';
 import Task from './Task';
@@ -5,11 +7,13 @@ import { IoAddCircleSharp } from "react-icons/io5";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NewTaskForm from './NewTaskForm';
+import { Task as TaskType } from 'src/type';
 
-export interface ITaskListProps {
+export type ITaskListProps = {
+    tasks: TaskType[]
 }
 
-export default function TaskList (props: ITaskListProps) {
+export default function TaskList () {
     const {tasks,addTask, addBlockToTask} = useTaskContext()
     // const [modalOpen, setModalOpen] = useState<boolean>(false)
     const [newTaskTitle, setNewTaskTitle] = useState<string>("")

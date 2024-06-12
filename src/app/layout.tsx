@@ -1,9 +1,13 @@
 import type { Metadata } from 'next'
 import TabComponent from 'src/components/Tabs'
 import Wrapper from 'src/components/MainContainer'
- 
+import '../index.css'
+
 export const metadata: Metadata = {
-  title: 'Pomoblocks',
+  title: {
+    default: "Pomoblock: Scheduled Todo List", 
+    template: "%s | Scheduled Todo List"
+  },
   description: 'Todolist combined with pomodoro',
 }
  

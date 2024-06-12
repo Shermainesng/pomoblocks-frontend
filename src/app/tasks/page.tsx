@@ -1,12 +1,16 @@
-"use client"
 import * as React from 'react';
 import TaskList from 'src/components/Tasks/TaskList';
+import { getTasks } from 'src/lib/apis/TaskApi';
 
-export interface ITabsProps {
-}
 
-export default function Task (props: ITabsProps) {
+
+export default async function Task () {
+  const tasks = await getTasks();
+  console.log("tasks", tasks);
   return (
-      <TaskList/>
+      <div>
+        Task page
+        <TaskList/>
+      </div>
   );
 }
